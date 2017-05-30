@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 16:26:54 by thou              #+#    #+#             */
-/*   Updated: 2017/05/30 17:24:16 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/30 17:41:58 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_env
 	t_ant			*ant;
 	double			*horizontal;
 	double			*vertical;
+	t_list			*list;
 }					t_env;
 
 #endif
