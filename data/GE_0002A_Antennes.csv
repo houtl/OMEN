@@ -1,0 +1,4 @@
+Operator;Sector Number;Sector Name;Antenna;Azimuth;Frequency;ERP(W);X;Y;Hight;MecaTilit;ElecTilt;Perimeter
+Salt;1;1STK;K80010664;45.00;800;820;0;0;30.3;0;-2;91
+Salt;2;2STK;K80010664;140.00;800;1200;0;0;30.3;0;-2;91
+Salt;3;3STKE;K80010664;240.00;800;1200;-2.9;-5.3;30;0;-2;91
