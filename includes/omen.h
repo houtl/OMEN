@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 16:26:54 by thou              #+#    #+#             */
-/*   Updated: 2017/05/30 17:41:58 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/30 18:23:41 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ typedef struct		s_env
 	double			*horizontal;
 	double			*vertical;
 	t_list			*list;
+	double			gamma;
 }					t_env;
+
+typedef struct		s_result
+{
+	int				x;
+	int				y;
+	double			z;
+	double			e;
+}					t_res;
 
 #endif
