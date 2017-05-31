@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 13:24:49 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 14:57:20 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 15:58:03 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 int		isbatiment(t_gps gps)
 {
-	if (gps.lat > 0)
-		return (1);
+	t_bulding	*list;
+
+	list = get_list();
+	while (list)
+	{
+		if (list->lat - gps.lat < 0.000009 && list->lon - gps.lon < 0.000009 / cos(gps.lon))
+			return (list->id);
+		list = list->next;
+	}
 	return (0);
 }
 

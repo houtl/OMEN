@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 16:26:54 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 15:46:02 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 15:58:36 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 typedef struct		s_bulding
 {
 	int				id;
+	double			lat;
+	double			lon;
 	struct s_bulding	*next;
 }					t_bulding;
 
