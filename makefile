@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 12:16:59 by thou              #+#    #+#              #
-#    Updated: 2017/05/31 13:53:31 by thou             ###   ########.fr        #
+#    Updated: 2017/05/31 17:17:13 by ibtraore         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CLEAR		=	\033[H\e[J
 NAME		=	OMEN
 FLAG		=	-Wall -Werror -Wextra
 SRC_DIR		=	src/
-SRC_BASE	=	main.c get_antennes.c get_gps.c get_attenuation.c ispointvalide.c get_field.c
+SRC_BASE	=	main.c get_antennes.c get_gps.c get_attenuation.c ispointvalide.c get_field.c search.c
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJ_DIR		=	obj/
 LIBFT		=	./libft

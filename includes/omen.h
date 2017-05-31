@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 16:26:54 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 15:58:36 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 17:16:07 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ void				get_attenuation(t_env *e);
 t_gps				get_gps(char *str);
 int					ispointvalide(int x, int y, t_gps gps);
 double				total_field_at_point(int x, int y, double z, t_env *e);
-
+int					is_bulding(int id, t_bulding *list, char **tab);
+int					isbatiment(t_gps gps);
+t_gps				transform_to_gps(double x, double y, t_gps gps);
 #endif

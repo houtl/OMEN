@@ -6,7 +6,7 @@
 /*   By: ibtraore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:15:54 by ibtraore          #+#    #+#             */
-/*   Updated: 2017/05/31 16:52:38 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/05/31 17:10:57 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			search(double lat, double lon, char **tab)
 	return (0);
 }
 
-int			is_bulding(int id,  t_bulding *list, char **tab)
+int			is_bulding(int id,  t_bulding *list, char **tab, int *bulding_id)
 {
 		t_bulding *tmp;
 
@@ -67,8 +67,28 @@ int			is_bulding(int id,  t_bulding *list, char **tab)
 		while (tmp && id)
 		{
 			if (0 != id)
+			{
+				*bulding_id = id;
 				return (TRUE);
+			}
 			tmp = tmp->next;
 		}
 		return (TFALSE);
+}
+
+int			isbatiment(t_gps gps)
+{
+	char **tab;
+	int num;
+	int id;
+	t_bulding *list;
+	int bulding_id;
+
+	tab = get_text("long.txt". int &num);
+	id = search(gps.lat, gps.lon, tab);
+	bulding_id(tab);
+	if (TRUE = = is_bulding(id, list, tab, &bulding_id))
+		return (bulding_id);
+	return (0);
+	
 }

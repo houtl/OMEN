@@ -6,13 +6,13 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 13:24:49 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 15:58:03 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 17:16:10 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "omen.h"
 
-int		isbatiment(t_gps gps)
+/*int		isbatiment(t_gps gps)
 {
 	t_bulding	*list;
 
@@ -24,7 +24,7 @@ int		isbatiment(t_gps gps)
 		list = list->next;
 	}
 	return (0);
-}
+}*/
 
 t_gps	transform_to_gps(double x, double y, t_gps gps)
 {
