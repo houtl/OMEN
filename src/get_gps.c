@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 10:49:51 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 13:23:31 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 15:09:25 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_gps	get_gps(char *str)
 	char	*line;
 	t_gps	gps;
 
-	if ((fd = open("Coordinates.csv", O_RDONLY)) < 0)
+	if ((fd = open("data/Coordinates.csv", O_RDONLY)) < 0)
 		err_exit("coordinates.csv error");
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -33,4 +33,7 @@ t_gps	get_gps(char *str)
 		free(line);
 	}
 	err_exit("cat not get gps info");
+	gps.lon = 0;
+	gps.lat = 0;
+	return (gps);
 }

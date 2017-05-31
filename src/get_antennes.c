@@ -6,7 +6,7 @@
 /*   By: ibtraore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 19:59:06 by ibtraore          #+#    #+#             */
-/*   Updated: 2017/05/31 10:31:48 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 15:02:09 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,11 @@ t_ant		load_antenna_data(char *line)
 	return (antenna);
 }
 
-void	get_antenna(char *file,  t_env *e)
+void	get_antennes(char *file,  t_env *e)
 {
 	char	*line;
 	int		fd;
-	char	*tab;
-	int		i;
-
+	
 	e->total_antenna = -1;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		err_exit("wrong file");
