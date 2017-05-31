@@ -6,17 +6,15 @@
 /*   By: ibtraore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:15:54 by ibtraore          #+#    #+#             */
-/*   Updated: 2017/05/31 17:47:46 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:27:33 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/omen.h"
-
+#include "omen.h"
 
 int			search(double lat, double lon, char **tab)
 {
 	int i;
-	double _lat;
 	char	*trim;
 	char **split;
 	double lat2;
@@ -37,14 +35,14 @@ int			search(double lat, double lon, char **tab)
 		if ((ft_strcmp(trim, "\"lat\""), 4) == 0) 
 		{
 			split = ft_strsplit(trim, ' ');
-			lat2 = ft_atoi(split[1]);
+			lat2 = ft_atof(split[1], 0);
 			if (ft_abs((int)lat2 - lat) <= 1)
 				flag1 = 1;
 		}
 		if ((ft_strcmp(trim, "\"lon\"") ,4) == 0) 
 		{
 			split = ft_strsplit(trim, ' ');
-			lat2 = ft_atoi(split[1]);
+			lon2 = ft_atof(split[1], 0);
 			if (((int)lat2 - lon) <= 1 || (int)lat2 - lon >= -1)
 				flag2 = 1;
 		}
@@ -56,7 +54,7 @@ int			search(double lat, double lon, char **tab)
 	return (0);
 }
 
-int			is_buulding(int id,  t_bulding *list, char **tab, int *bulding_id)
+int			is_buulding(int id,  t_bulding *list, int *bulding_id)
 {
 		t_bulding *tmp;
 
@@ -83,7 +81,8 @@ int			isbatiment(t_gps gps)
 
 	tab = get_text("long.txt" , &num);
 	id = search(gps.lat, gps.lon, tab);
-	if (1 == is_buulding(id, list, tab, &bulding_id))
+	list = bulding_id(tab);
+	if (1 == is_buulding(id, list, &bulding_id))
 		return (bulding_id);
 	return (0);
 	

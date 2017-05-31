@@ -6,11 +6,11 @@
 /*   By: ibtraore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 13:38:53 by ibtraore          #+#    #+#             */
-/*   Updated: 2017/05/31 17:06:53 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:29:07 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/omen.h"
+#include "omen.h"
 
 int			tab_num(char *file)
 {
