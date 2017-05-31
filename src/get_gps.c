@@ -6,11 +6,11 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 10:49:51 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 15:09:25 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 17:48:40 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "omen.h"
+#include "../includes/omen.h"
 
 t_gps	get_gps(char *str)
 {

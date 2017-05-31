@@ -6,11 +6,11 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 10:23:24 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 13:22:59 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 17:48:15 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "omen.h"
+#include "../includes/omen.h"
 
 void	get_attenuation(t_env *e)
 {

@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 16:26:54 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 17:16:07 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/05/31 17:45:06 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <math.h>
 # include <stdio.h>
-# include "libft.h"
+# include "../libft/libft.h"
 # define MAX_ANTENNA 1000
 
 # define Z 12
@@ -73,6 +73,7 @@ typedef struct		s_result
 	int				bat;
 }					t_res;
 
+char				**get_text(char *str, int *num);
 void				print_all_antenna(t_env *e);
 void				get_antennes(char *file, t_env *e);
 void				err_exit(char *str);
