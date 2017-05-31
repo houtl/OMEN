@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 16:26:54 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 14:57:51 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/31 15:46:02 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 
 # define Z 12
 # define MAX_ANTENNA 1000
+
+typedef struct		s_bulding
+{
+	int				id;
+	struct s_bulding	*next;
+}					t_bulding;
 
 typedef struct		s_antenna
 {
