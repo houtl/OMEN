@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 10:49:49 by thou              #+#    #+#             */
-/*   Updated: 2017/06/01 06:17:16 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/06/01 06:28:53 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void		list_to_file(t_env *e)
 	t_list	*list;
 	int		i;
 	char	*name;
-
+	char	st[3] = "../";
 	name = ft_strjoinfree(ft_strdup(e->name), "_Omens.csv");
+	name = ft_strjoin(st, name);
 	list = e->list;
 	fd = (int)fopen(name, "a");
 	ft_putstr_fd("OMENID;X;Y;Z;Efield;Approved\n", fd);
@@ -114,6 +115,5 @@ int main(int ac, char **av)
 		}
 		list_to_file(&env);
 	}
-	ft_putstr("Merci de verifier le resultat dans le fichier creer");
 	return (0);
 }
