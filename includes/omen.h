@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 16:26:54 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 18:29:03 by thou             ###   ########.fr       */
+/*   Updated: 2017/06/01 05:57:38 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <math.h>
 # include <stdio.h>
-# include "libft.h"
+# include "../libft/includes/libft.h"
 # define MAX_ANTENNA 1000
 
 # define Z 12
@@ -56,7 +56,7 @@ typedef struct		s_gps
 typedef struct		s_env
 {
 	char			*name;
-	t_ant			ant[MAX_ANTENNA];
+	t_ant			*ant[MAX_ANTENNA];
 	double			*horizontal;
 	double			*vertical;
 	t_list			*list;
@@ -79,11 +79,11 @@ void				get_antennes(char *file, t_env *e);
 void				err_exit(char *str);
 void				get_attenuation(t_env *e);
 t_gps				get_gps(char *str);
-int					ispointvalide(int x, int y, t_gps gps);
+int					ispointvalide(int x, int y, t_gps gps , t_env *e);
 double				total_field_at_point(int x, int y, double z, t_env *e);
 int					is_bulding(int id, t_bulding *list);
-int					isbatiment(t_gps gps);
+int					isbatiment(t_gps gps, t_env *e);
 t_gps				transform_to_gps(double x, double y, t_gps gps);
-t_bulding           *bulding_id(char **tab);
+t_bulding           *get_bulding_id(char **tab);
 
 #endif

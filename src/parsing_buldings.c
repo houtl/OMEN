@@ -6,11 +6,11 @@
 /*   By: ibtraore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 13:38:53 by ibtraore          #+#    #+#             */
-/*   Updated: 2017/05/31 18:29:07 by thou             ###   ########.fr       */
+/*   Updated: 2017/06/01 00:06:04 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "omen.h"
+#include "../includes/omen.h"
 
 int			tab_num(char *file)
 {
@@ -51,7 +51,7 @@ char		**get_text(char *file, int *number)
 	return (tab);
 }
 
-t_bulding			*bulding_id(char **tab)
+t_bulding			*get_bulding_id(char **tab)
 {
 	int i;
 	t_bulding *new;
@@ -59,7 +59,6 @@ t_bulding			*bulding_id(char **tab)
 	t_bulding *tmp;
 	char *str;
 	char **split;
-
 	char *trim;
 
 

@@ -6,11 +6,11 @@
 /*   By: ibtraore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:15:54 by ibtraore          #+#    #+#             */
-/*   Updated: 2017/05/31 18:27:33 by thou             ###   ########.fr       */
+/*   Updated: 2017/06/01 02:37:50 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "omen.h"
+#include "../includes/omen.h"
 
 int			search(double lat, double lon, char **tab)
 {
@@ -71,19 +71,29 @@ int			is_buulding(int id,  t_bulding *list, int *bulding_id)
 		return (0);
 }
 
-int			isbatiment(t_gps gps)
+int			isbatiment(t_gps gps, t_env *e)
 {
 	char **tab;
 	int num;
 	int id;
 	t_bulding *list;
 	int bulding_id;
-
-	tab = get_text("long.txt" , &num);
-	id = search(gps.lat, gps.lon, tab);
-	list = bulding_id(tab);
-	if (1 == is_buulding(id, list, &bulding_id))
-		return (bulding_id);
+	int i;
+	char *name[4] = {"GE_0002A6.1443288446.21074101.json",
+						"GE_0002A6.1443288446.21074101.json",
+						"TG_3150D9.0638297247.54028145.json",
+						"TG_3150D9.0638297247.54028145.json"};
+	i = -1;
+	while (++i < 4)
+	{
+		if(0 ==  ft_strcmp(name[i], e->name))
+		{
+			tab = get_text("name[i]" , &num);
+			id = search(gps.lat, gps.lon, tab);
+			list = get_bulding_id(tab);
+			if (1 == is_buulding(id, list, &bulding_id))
+				return (bulding_id);
+		}
+	}
 	return (0);
-	
 }

@@ -6,7 +6,7 @@
 /*   By: ibtraore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 19:58:50 by ibtraore          #+#    #+#             */
-/*   Updated: 2017/05/31 15:00:27 by thou             ###   ########.fr       */
+/*   Updated: 2017/06/01 06:00:50 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ double		get_angle_horizontal(t_env *e, int x, int y, int num)
 
 	int dx;
 	int dy;
+	double rho;
 
-	dx = e->ant[num].x - x;
-	dy = e->ant[num].y - y;
-	ah = atan2(dy, dx);
+	dx = e->ant[num]->x - x;
+	dy = e->ant[num]->y - y;
+	rho = sqrtf(dx * dx + dy * dy ) ;
+	ah = (dy >= 0.0) ? acos(dx / (double)sqrtf(dx * dx + dy * dy)) : 2 * M_PI - acos( dx /(double) sqrtf(dx * dx + dy * dy));
+	ah *= M_PI/180.0 * ft_abs(ah);
 	return (ah);
 }
 
@@ -33,13 +36,14 @@ double		get_angle_vertical(t_env *e, int x, int y, double z, int num)
 	int dx;
 	int dy;
 	int dz;
-	int d;
+	double  d;
 
-	dx = e->ant[num].x - x;
-	dy = e->ant[num].y - y;
-	dz = e->ant[num].z - z;
+	dx = e->ant[num]->x - x;
+	dy = e->ant[num]->y - y;
+	dz = e->ant[num]->z - z;
 	d = sqrt(dx * dx + dy * dy + dz * dz);
-	av = asin(e->ant[num].z / d);
+	av = asin(e->ant[num]->z / d);
+	av *= M_PI /  180.0 * ft_abs(av);
 	return (av);
 }
 
@@ -47,22 +51,24 @@ double		get_angle_vertical(t_env *e, int x, int y, double z, int num)
 double			get_field(int x, int  y, double z, t_env *e, int num)
 {
 	double field;
-	int		 d;
+	double		 d;
 	int dx;
 	int dy;
 	int dz;
-	int angle_v;
-	int  angle_h;
+	double  angle_v;
+	double  angle_h;
+	double rho;
 
-
-	dx = e->ant[num].x - x;
-	dy = e->ant[num].y - y;
-	dz = e->ant[num].z - z;
+	dx = e->ant[num]->x - x;
+	dy = e->ant[num]->y - y;
+	dz = e->ant[num]->z - z;
+	rho = sqrtf(dx * dx + dy * dy + dz * dz);
 	angle_h = get_angle_horizontal(e, x, y, num);
-	angle_v = get_angle_vertical(e, x, y, z, num);
-	e->ant[num].gamma  = e->horizontal[angle_v] + e->vertical[angle_h];
+	angle_v = get_angle_vertical(e, x, y, z, num) ;
+	
+	e->ant[num]->gamma  = e->horizontal[(int)angle_v%360] + e->vertical[(int)angle_h%360];
 	d = sqrt(dx * dx + dy * dy + dz * dz);
-	field = (7.0 / d) * sqrt(e->ant[num].erp / e->ant[num].gamma); 
+	field = (7.0 / d) * sqrt(e->ant[num]->erp / e->ant[num]->gamma); 
 	return (field);
 }
 
@@ -70,10 +76,15 @@ double		total_field_at_point(int x, int y, double z, t_env *e)
 {
 	double field;
 	int i;
+	double  tmp;
 
 	field = 0.0;
 	i = -1;
+
 	while (++i < e->total_antenna)
-		field += get_field(x, y, z, e, i);
+	{
+		tmp = get_field(x, y, z, e, i);
+		field += tmp;
+	}
 	return (field);
 }

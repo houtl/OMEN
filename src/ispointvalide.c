@@ -6,11 +6,11 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 13:24:49 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 17:16:10 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/06/01 04:53:45 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "omen.h"
+#include "../includes/omen.h"
 
 /*int		isbatiment(t_gps gps)
 {
@@ -31,21 +31,23 @@ t_gps	transform_to_gps(double x, double y, t_gps gps)
 	t_gps	point;
 
 	point.lat = gps.lat + 0.0000089831 * y;
-	point.lon = gps.lon + 0.0000089831 *  x / cos(gps.lon);
+	point.lon = gps.lon + 0.0000089831 *  (double)x / cos(gps.lon);
 	return (point);
 }
 
-int	ispointvalide(int x, int y, t_gps gps)
+int	ispointvalide(int x, int y, t_gps gps, t_env *e)
 {
 	t_gps	point;
-	int		n;
+	int		bat_num;
 
 	if (x * x + y * y > 80 * 80 )
 		return (0);
 	point = transform_to_gps(x, y, gps);
-	if ((n = isbatiment(point)) == 0)
+	bat_num = isbatiment(point,e);
+	//printf("isbati = %d\n", bat_num);
+	if (bat_num  == 0)
 		return (0);
 	else
-		return (n);
+		return (bat_num);
 }
 

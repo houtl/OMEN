@@ -6,11 +6,11 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 10:49:49 by thou              #+#    #+#             */
-/*   Updated: 2017/05/31 17:13:20 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/06/01 06:17:16 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "omen.h"
+#include "../includes/omen.h"
 
 void		err_exit(char *str)
 {
@@ -51,7 +51,7 @@ void		list_to_file(t_env *e)
 	int		i;
 	char	*name;
 
-	name = ft_strjoinfree(ft_strsub(e->name, 0, 8), "_Omens.csv");
+	name = ft_strjoinfree(ft_strdup(e->name), "_Omens.csv");
 	list = e->list;
 	fd = (int)fopen(name, "a");
 	ft_putstr_fd("OMENID;X;Y;Z;Efield;Approved\n", fd);
@@ -72,7 +72,8 @@ void		list_to_file(t_env *e)
 		else
 			str = ft_strjoinfree(str, "YES");
 		ft_putstr_fd(str, fd);
-		free(str);
+		if (str)
+			free(str);
 		list = list->next;
 	}
 	close(fd);
@@ -87,41 +88,32 @@ int main(int ac, char **av)
 	int			x;
 	int			y;
 
-	if (ac < 2)
-		err_exit("pas de parametre");
-	z = Z;
-	env.name = av[1] + 5;
-	get_antennes(av[1], &env);
-	get_attenuation(&env);
-	//read file "80010664_0821_x_co_m45_02t.msi", input to 2 tab attenuation: *horizontal *vertical.
-	//example: horizontal[0] = 0.00;
-	//	       horizontal[1] = 0.01;
-	//	       horizontal[2] = 0.02;
-	//		   horizontal[35] = 3.26;
-	//		   horizontal[359] = 0.00;
-	//		   vertical[0] = 0.17;
-	//		   vertical[15]= 8.41;
-	gps = get_gps(env.name);
-	//read file "Coordinates.csv", obtenu le position gps des antennes.
-	x = -81;
-	while (++x < 80)
+	if (ac ==  2)
 	{
-		y = -81;
-		while (++y < 80)
+		z = Z;
+		env.name = av[1];
+		env.name = av[1];
+		get_antennes(av[1], &env);
+		get_attenuation(&env);
+		gps = get_gps(env.name);
+		x = -81;
+		while (++x < 80)
 		{
-			if (r.bat == ispointvalide(x, y, gps))//point est dans rond? est dans batiment? bat = batiment nu.
+			y = -81;
+			while (++y < 80)
 			{
-				r.x = x;
-				r.y = y;
-				r.z = 10;
-				r.e = total_field_at_point(x, y, z, &env);
-				//calcul  du champ pour une antenne sur le point.
-				res_to_list(&env, &r);
-				//list->content_size == bat ? 
-				//((t_res*)list->content)->e < r->e ? (list->content = r)
+				if (r.bat == ispointvalide(x, y, gps, &env))
+				{
+					r.x = x;
+					r.y = y;
+					r.z = 10;
+					r.e = total_field_at_point(x, y, z, &env);;
+					res_to_list(&env, &r); 
+				}
 			}
 		}
+		list_to_file(&env);
 	}
-	list_to_file(&env);
-	//output list to .csv file.
+	ft_putstr("Merci de verifier le resultat dans le fichier creer");
+	return (0);
 }
