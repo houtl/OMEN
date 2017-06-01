@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 10:23:24 by thou              #+#    #+#             */
-/*   Updated: 2017/06/01 06:04:37 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/06/01 07:18:19 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	get_attenuation(t_env *e)
 		{
 			while (*str != ' ')
 				++str;
-			e->horizontal[nl - 7 <  0 ? 0 : nl - 7] = atof(str);
+			e->horizontal[nl - 7 <  7 - nl ? 0 : nl - 7] = atof(str);
 		}
 		if (nl > 367)
 		{
 			while (*str != ' ')
 				++str;
-			e->vertical[nl - 368 < 0 ? 0 :  nl - 360] = atof(str);
+			e->vertical[nl - 360 < 0 ? 360 - nl :  nl - 360] = atof(str);
 		}
 		if (line)
 			free(line);

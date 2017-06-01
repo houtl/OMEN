@@ -6,7 +6,7 @@
 /*   By: ibtraore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 19:58:50 by ibtraore          #+#    #+#             */
-/*   Updated: 2017/06/01 06:00:50 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/06/01 07:43:41 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ double		get_angle_vertical(t_env *e, int x, int y, double z, int num)
 	dz = e->ant[num]->z - z;
 	d = sqrt(dx * dx + dy * dy + dz * dz);
 	av = asin(e->ant[num]->z / d);
-	av *= M_PI /  180.0 * ft_abs(av);
+	av = av * M_PI /  180.0 ;
 	return (av);
 }
 
@@ -65,10 +65,9 @@ double			get_field(int x, int  y, double z, t_env *e, int num)
 	rho = sqrtf(dx * dx + dy * dy + dz * dz);
 	angle_h = get_angle_horizontal(e, x, y, num);
 	angle_v = get_angle_vertical(e, x, y, z, num) ;
-	
 	e->ant[num]->gamma  = e->horizontal[(int)angle_v%360] + e->vertical[(int)angle_h%360];
 	d = sqrt(dx * dx + dy * dy + dz * dz);
-	field = (7.0 / d) * sqrt(e->ant[num]->erp / e->ant[num]->gamma); 
+	field = (7.0 / d) * sqrtf(e->ant[num]->erp )/ ((double)e->ant[num]->gamma == 0.0 ? 1 : (double)e->ant[num]->gamma); 
 	return (field);
 }
 

@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 10:49:49 by thou              #+#    #+#             */
-/*   Updated: 2017/06/01 06:28:53 by ibtraore         ###   ########.fr       */
+/*   Updated: 2017/06/01 07:42:56 by ibtraore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,19 @@ void		res_to_list(t_env *e, t_res *r)
 	tmp->next = ft_lstnew(r, r->bat);
 }
 
-void		list_to_file(t_env *e)
+void		list_to_file(t_env *e, t_res r)
 {
 	int		fd;
 	char	*str;
 	t_list	*list;
 	int		i;
 	char	*name;
+	char	s2[10];
 	char	st[3] = "../";
 	name = ft_strjoinfree(ft_strdup(e->name), "_Omens.csv");
 	name = ft_strjoin(st, name);
 	list = e->list;
-	fd = (int)fopen(name, "a");
+	fd = (int)fopen(name, "w+");
 	ft_putstr_fd("OMENID;X;Y;Z;Efield;Approved\n", fd);
 	i = 1;
 	while (list)
@@ -68,16 +69,18 @@ void		list_to_file(t_env *e)
 		str = ft_strjoinfree(str, ";");
 		str = ft_strjoinfree(str, ft_itoa(((t_res*)list->content)->e));
 		str = ft_strjoinfree(str, ";");
+		sprintf(&s2[0], "%f", r.e);
+		str = ft_strjoinfree(str, &s2[0]);
 		if (((t_res*)list->content)->e >= 5)
-			str = ft_strjoinfree(str, "NO");
+			str = ft_strjoinfree(str, ";NO");
 		else
-			str = ft_strjoinfree(str, "YES");
+			str = ft_strjoinfree(str, ";YES");
 		ft_putstr_fd(str, fd);
 		if (str)
 			free(str);
 		list = list->next;
 	}
-	close(fd);
+	//close(fd);
 }
 
 int main(int ac, char **av)
@@ -113,7 +116,7 @@ int main(int ac, char **av)
 				}
 			}
 		}
-		list_to_file(&env);
+		list_to_file(&env, r);
 	}
 	return (0);
 }
